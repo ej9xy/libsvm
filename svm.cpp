@@ -1439,7 +1439,7 @@ private:
 //
 static void solve_c_svc(
 	const svm_problem *prob, const svm_parameter* param,
-	double *alpha, Solver::SolutionInfo* si, double Cp, double Cn)
+	double *alpha, Solver::SolutionInfo* si, double Cp, double Cn) 
 {
 	int l = prob->l;
 	double *minus_ones = new double[l];
@@ -1653,7 +1653,7 @@ static decision_function svm_train_one(
 	switch(param->svm_type)
 	{
 		case C_SVC:
-			solve_c_svc(prob,param,alpha,&si,Cp,Cn);
+			solve_c_svc(prob,param,alpha,&si,Cp,Cn); //here solve_c_svc, by passing si as &si, allows for it to be reassigned as a pointer
 			break;
 		case NU_SVC:
 			solve_nu_svc(prob,param,alpha,&si);
