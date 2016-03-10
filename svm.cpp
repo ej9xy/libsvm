@@ -2713,8 +2713,8 @@ int svm_save_model(const char *model_file_name, const svm_model *model)
 	for(int i=0;i<l;i++)
 	{
 		for(int j=0;j<nr_class-1;j++)
-			fprintf(fp, "%.16g ",sv_coef[j][i]);
-
+			fprintf(fp, "%.16g ",sv_coef[j][i]);        // it appears that the matrix of 2d arrays sv_coef is being transposed
+								// it is printing each row as columns
 		const svm_node *p = SV[i];
 
 		if(param.kernel_type == PRECOMPUTED)
@@ -2950,7 +2950,7 @@ svm_model *svm_load_model(const char *model_file_name)
 		p = strtok(line, " \t");
 		model->sv_coef[0][i] = strtod(p,&endptr);
 		for(int k=1;k<m;k++)
-		{
+		{                                           
 			p = strtok(NULL, " \t");
 			model->sv_coef[k][i] = strtod(p,&endptr);
 		}
