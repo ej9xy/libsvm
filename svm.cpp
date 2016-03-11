@@ -2895,7 +2895,7 @@ svm_model *svm_load_model(const char *model_file_name)
 	model->nSV = NULL;
 	
 	// read header
-	if (!read_model_header(fp, model))
+	if (!read_model_header(fp, model))    //I think this is how model values that are assigned null in svm_predict are preserved
 	{
 		fprintf(stderr, "ERROR: fscanf failed to read model\n");
 		setlocale(LC_ALL, old_locale);
